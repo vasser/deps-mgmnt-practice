@@ -1,22 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import _ from "lodash";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+  const [image, setImage] = useState("");
+
+  const fetchImage = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/image");
+      setImage(_.get(response.data, "image", ""));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchImage();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        {image && (
+          <img src={image} width={400} height={200} alt="Hello OtawaJS" />
+        )}
+        <p>I am a typical React app.</p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#refresh-image"
+          style={{ color: "#008080" }}
+          onClick={fetchImage}
         >
-          Learn React
+          Refresh the image
         </a>
       </header>
     </div>

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["es2021", "dom"],
+    "target": "esnext",
+    "module": "esnext",
+    "outDir": "./appBuild",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "types": ["node", "express"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["app"]
+}
